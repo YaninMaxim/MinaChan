@@ -5,12 +5,14 @@ import PluginSystem.Plugin;
 import PluginSystem.PluginProxy;
 import PluginSystem.ResponseListener;
 import groovy.lang.Script;
+
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GroovyPlugin extends Script implements Plugin {
     private PluginProxy pluginProxy = null;
-    private List<Runnable> cleanupHandlers = new ArrayList<>();
+    private final List<Runnable> cleanupHandlers = new ArrayList<>();
     @Override
     public boolean initialize(PluginProxy pluginProxy) {
         this.pluginProxy = pluginProxy;
@@ -43,4 +45,5 @@ public abstract class GroovyPlugin extends Script implements Plugin {
     protected void addCleanupHandler(Runnable handler) {
         cleanupHandlers.add(handler);
     }
+    protected Path getDataDirPath(){return pluginProxy.getDataDirPath();}
 }

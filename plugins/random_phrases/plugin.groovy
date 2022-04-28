@@ -2,7 +2,6 @@ import org.apache.commons.io.IOUtils
 import org.json.JSONObject
 
 import java.nio.file.Files
-import java.nio.file.Paths
 
 addMessageListener("random_phrases:test", { sender, tag, data ->
 	sendMessage('DeskChan:say', [text: 'Hello world!', timeout: 0])
@@ -20,7 +19,8 @@ addCleanupHandler({
 })
 
 sendMessage('core:get-plugin-data-dir', null, { sender, data ->
-	def dataDirPath = Paths.get(((Map) data).get('path').toString())
+	def dataDirPath = getDataDirPath()
+	System.out.println(dataDirPath)
 	Thread.start() {
 		def dataStr = "";
 		try {

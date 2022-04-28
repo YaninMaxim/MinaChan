@@ -1,6 +1,6 @@
 package PluginGUI;
 
-import PluginSystem.Utils;
+import PluginSystem.PluginManager;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -97,7 +97,7 @@ public class SkinManagerDialog extends JDialog {
 	
 	private ArrayList<Skin> loadSkinList() {
 		ArrayList<Skin> list = new ArrayList<>();
-		Path directoryPath = Utils.getResourcePath("characters");
+		Path directoryPath = PluginManager.getInstance().assetDir.resolve("skins");
 		if (directoryPath != null) {
 			try {
 				DirectoryStream<Path> directoryStream = Files.newDirectoryStream(directoryPath);
@@ -144,5 +144,4 @@ public class SkinManagerDialog extends JDialog {
 			e.printStackTrace();
 		}
 	}
-	
 }

@@ -1,7 +1,7 @@
 package PluginGUI;
 
 
-import PluginSystem.Utils;
+import PluginSystem.PluginManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -150,7 +150,7 @@ class CharacterWidget extends JPanel implements MouseListener, MouseMotionListen
 	}
 	
 	void loadBuiltinSkin(String name) {
-		setSkin(new Skin(Utils.getResourcePath("characters/" + name), true));
+		setSkin(new Skin(PluginManager.getInstance().assetDir.resolve("skins/"+name), true));
 	}
 	
 	Skin getCurrentSkin() {

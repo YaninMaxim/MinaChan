@@ -1,5 +1,6 @@
 package PluginSystem;
 
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -88,5 +89,7 @@ public class PluginProxy implements MessageListener {
 			listener.handle(sender, data);
 		}
 	}
-	
+	public Path getDataDirPath() {
+		return PluginManager.getPluginDataDirPath(id);
+	}
 }

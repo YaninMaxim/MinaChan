@@ -9,24 +9,52 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class PluginManager {
-	
+	public Path userDir = null;
+	public Path pluginsDir = null;
+	public Path dataDir = null;
+	public Path assetDir = null;
 	private static final PluginManager instance = new PluginManager();
 	private final Map<String, PluginProxy> plugins = new HashMap<>();
 	private final Map<String, Set<MessageListener>> messageListeners = new HashMap<>();
 	private final List<PluginLoader> loaders = new ArrayList<>();
 	private static OutputStream logStream = null;
-	
-	private PluginManager() {
-	}
-	
+	private PluginManager(){}
 	public static PluginManager getInstance() {
 		return instance;
 	}
 	
-	public void initialize() {
+	public void initialize(){
+		// Корневой каталог
+		this.userDir = Paths.get(System.getProperty("user.dir"));
+
+		// Каталог расширений
+		this.pluginsDir = userDir.resolve("plugins");
+		if(!Files.isDirectory(this.pluginsDir))
+			this.pluginsDir.toFile().mkdirs();
+
+		// Каталог данных
+		this.dataDir = userDir.resolve("data");
+		if(!Files.isDirectory(this.dataDir))
+			this.dataDir.toFile().mkdirs();
+
+		// Каталог ассетов
+		this.assetDir = userDir.resolve("asset");
+		if(!Files.isDirectory(this.assetDir))
+			this.dataDir.toFile().mkdirs();
+
+		// Загрузка плагина "Ядро"
 		loadPluginByClass(CorePlugin.class);
 	}
-	
+
+	public static Path getPluginDataDirPath(String id) {
+		final Path dataDir = PluginManager.getInstance().dataDir.resolve(id);
+		if (!Files.isDirectory(dataDir)) {
+			dataDir.toFile().mkdirs();
+			log("Created directory: " + dataDir.toString());
+		}
+		return dataDir;
+	}
+
 	public boolean initializePlugin(String id, Plugin plugin) {
 		if (!plugins.containsKey(id)) {
 			PluginProxy pluginProxy = new PluginProxy(plugin);
@@ -245,4 +273,5 @@ public class PluginManager {
 
 		getInstance().sendMessage(id, "core-events:error", error);
 	}
+
 }
