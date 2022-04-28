@@ -8,7 +8,7 @@ public class BalloonWindow extends JFrame {
 	private BalloonWidget widget;
 	
 	BalloonWindow(BalloonWidget widget) {
-		super("DeskChan Balloon");
+		super("MinaChan Balloon");
 		this.widget = widget;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setUndecorated(true);

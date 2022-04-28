@@ -78,7 +78,7 @@ public class MainWindow extends JFrame {
 				int fontStyle = Integer.parseInt(fontStyleStr);
 				balloonTextFont = new Font(fontFamily, fontStyle, fontSize);
 			}
-			setTitle("DeskChan");
+			setTitle("MinaChan");
 			setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 			setUndecorated(true);
 			setAlwaysOnTop(true);
@@ -143,10 +143,10 @@ public class MainWindow extends JFrame {
 				});
 			});
 			pluginProxy.sendMessage("core:register-alternative", new HashMap<String, Object>() {{
-				put("srcTag", "DeskChan:say"); put("dstTag", "gui:say"); put("priority", 100);
+				put("srcTag", "MinaChan:say"); put("dstTag", "gui:say"); put("priority", 100);
 			}});
 			pluginProxy.sendMessage("core:register-alternative", new HashMap<String, Object>() {{
-				put("srcTag", "DeskChan:register-simple-action"); put("dstTag", "gui:register-extra-action");
+				put("srcTag", "MinaChan:register-simple-action"); put("dstTag", "gui:register-extra-action");
 				put("priority", 100);
 			}});
 		});
@@ -253,7 +253,7 @@ public class MainWindow extends JFrame {
 		super.dispose();
 		try {
 			properties.store(Files.newOutputStream(dataDirPath.resolve("config.properties")),
-					"DeskChan GUI configuration");
+					"MinaChan GUI configuration");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

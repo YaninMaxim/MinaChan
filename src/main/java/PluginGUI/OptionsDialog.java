@@ -95,7 +95,7 @@ class OptionsDialog extends JFrame {
 	};
 	
 	OptionsDialog(MainWindow mainWindow) {
-		super(MainWindow.getString("deskchan_options"));
+		super(MainWindow.getString("MinaChan_options"));
 		this.mainWindow = mainWindow;
 		setMinimumSize(new Dimension(600, 300));
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -143,7 +143,7 @@ class OptionsDialog extends JFrame {
 		alternativesTab.add(alternativesScrollPane);
 		tabbedPane.addTab(MainWindow.getString("alternatives"), alternativesTab);
 		JPanel debugTab = new JPanel(new BorderLayout());
-		debugTagTextField = new JTextField("DeskChan:say");
+		debugTagTextField = new JTextField("MinaChan:say");
 		debugTab.add(debugTagTextField, BorderLayout.PAGE_START);
 		debugDataTextArea = new JTextArea("{\n\t\"text\": \"Test\"\n}\n");
 		JScrollPane debugDataTextAreaScrollPane = new JScrollPane(debugDataTextArea);
