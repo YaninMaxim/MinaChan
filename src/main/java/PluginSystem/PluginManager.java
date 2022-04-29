@@ -96,6 +96,13 @@ public class PluginManager {
 		}
 		listeners.add(listener);
 	}
+
+	/**
+	 * Отображает все зарегистрированные Listeners
+	 */
+	public void getMessageListeners(){
+		messageListeners.forEach((k, v) -> System.out.println((k + ":" + v)));
+	}
 	
 	void unregisterMessageListener(String tag, MessageListener listener) {
 		Set<MessageListener> listeners = messageListeners.getOrDefault(tag, null);
